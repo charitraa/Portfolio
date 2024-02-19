@@ -23,7 +23,7 @@ body {
 
 }
 .logo a {
-  font-size: 35px;
+  font-size: 50px;
   color: rgb(255, 255, 255);
   text-decoration: none;
   font-weight: 600;
@@ -125,6 +125,7 @@ body {
   color: rgb(255, 0, 0);
 }
 span {
+  
   color: rgb(255, 0, 0);
 }
 
