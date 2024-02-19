@@ -53,7 +53,6 @@ span{
 .navbar a {
   font-size: 25px;
   color: rgb(255, 255, 255);
-  font-size: 500;
   transition: 0.3s;
   opacity: 0;
   animation: slideTop 0.5s ease forwards;
@@ -206,62 +205,6 @@ a.btn:hover::before {
     width: 100%;
     height: 100vh;
     padding: 20px 10%;
-}
-.red{
-    color: red;
-}
-.logo a {
-    position: relative;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;font-weight: 600;
-    color: rgb(255, 255, 255)
-}
-.logo{
-    cursor: default;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
-
-}
-.navbar a{
-    display: inline-block;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    font-size: 500;
-    margin-left: 35px;
-    transition: .3s;
-    opacity: 0;
-    animation: slideTop .5s ease forwards;
-
-}
-.navbar a i{
-    transition: .3s all linear;
-}
-.navbar a:hover i{
-    transform: scale(1.5);
-    color:  rgb(255, 0, 0);
-}
-
-
-.tooltip{
-    position: relative;
-    display: inline-block;
-}
-.tooltiptext{
-    visibility: hidden;
-    margin-left: 10px;
-    width: 70px;
-    background-color: white;
-    color: black;
-    text-align:center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position:absolute ;
-    right: 40px;
-    z-index: 1;
-}
-.tooltip:hover .tooltiptext{
-    visibility: visible;
 }
 
 .text{
@@ -520,7 +463,7 @@ input[type=text]:focus{
     height: 300px;
   }  
   .header .navbar{
-    width: 200px;
+    width: 300px;
   }
   @media (max-width:515px){
     .header .logo a{
@@ -528,7 +471,9 @@ input[type=text]:focus{
     }
   }
   @media (max-width:350px){
-
+    .header .navbar a {
+        font-size: 15px;
+      }
     .home{
       height: 900px;
       margin-left: 50px;
@@ -729,6 +674,7 @@ input[type=text]:focus{
         opacity: 1;
     }
 }
+
 @keyframes slideLeft{
     0%{
         transform: translateX(100px);
@@ -741,49 +687,11 @@ input[type=text]:focus{
     }
 }
 
-
 .projects{    
     width: 100%;
     height: 100vh;
     padding: 20px 10%;
 }
-
-.red{
-    color: red;
-}
-.logo a {
-    position: relative;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;font-weight: 600;
-    color: rgb(255, 255, 255)
-}
-.logo{
-    cursor: default;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
-
-}
-.navbar a{
-    display: inline-block;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    font-size: 500;
-    margin-left: 35px;
-    transition: .3s;
-    opacity: 0;
-    animation: slideTop .5s ease forwards;
-
-}
-.navbar a i{
-    transition: .3s all linear;
-}
-.navbar a:hover i{
-    transform: scale(1.5);
-    color:  rgb(255, 0, 0);
-}
-
-
 
 .text{
     height: 150px;
@@ -1005,51 +913,10 @@ input[type=text]:focus{
 
 
 .service{    
-    position: relative;
-    background: url('../Pic/desktop-wallpaper-portfolio.jpg');
-    background-position: center;
-    background-size: cover;
     width: 100%;
     height: 100vh;
     padding: 20px 10%;
 }
-
-.red{
-    color: red;
-}
-.logo a {
-    position: relative;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;font-weight: 600;
-    color: rgb(255, 255, 255)
-}
-.logo{
-    cursor: default;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
-
-}
-.navbar a{
-    display: inline-block;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    font-size: 500;
-    margin-left: 35px;
-    transition: .3s;
-    opacity: 0;
-    animation: slideTop .5s ease forwards;
-
-}
-.navbar a i{
-    transition: .3s all linear;
-}
-.navbar a:hover i{
-    transform: scale(1.5);
-    color:  rgb(255, 0, 0);
-}
-
-
 
 .text{
     height: 150px;
@@ -1171,40 +1038,8 @@ input[type=text]:focus{
     padding: 20px 10%;
 }
 
-.red{
-    color: red;
-}
-.logo a {
-    position: relative;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;font-weight: 600;
-    color: rgb(255, 255, 255)
-}
-.logo{
-    cursor: default;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
 
-}
-.navbar a{
-    display: inline-block;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    font-size: 500;
-    margin-left: 35px;
-    transition: .3s;
-    opacity: 0;
-    animation: slideTop .5s ease forwards;
 
-}
-.navbar a i{
-    transition: .3s all linear;
-}
-.navbar a:hover i{
-    transform: scale(1.5);
-    color:  rgb(255, 0, 0);
-}
 
 .text{
     height: 150px;
