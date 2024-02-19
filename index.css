@@ -270,297 +270,10 @@ input[type=text]:focus{
     border-color: rgb(255, 0, 0);
 }
 
-@keyframes slideRight{
-    0%{
-        transform: translateX(-100px);
-        opacity: 0;
-
-    }
-    
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideBottom{
-    0%{
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideLeft{
-    0%{
-        transform: translateX(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-@keyframes slideTop {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-@keyframes slideTop {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-@keyframes slideBottom {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-@keyframes slideLeft {
-  0% {
-    transform: translateX(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-@media (max-width:1050px){
-  .home-content{
-    padding-left: 50px;
-  }
-}
-@media (max-width:1400px){
-  .home{
-    flex-direction: column;
-    height: 1500px;
-  }
-  .home-content{
-    max-width: 1000px;
-  }
-  .home-pic img{
-    width: 700px;
-    height: 700px;
-
-  }
-  .home-content h3 {
-    font-size: 42px;
-    font-weight: 700;
-
-  }
-  .home-content h1 {
-    font-size: 66px;
-    font-weight: 700;
-  }
-  .home-content p {
-    font-size: 30px;
-    line-height: 40px;
-  }
-  .btn-box{
-    width: 320px;
-    height: 60px;
-  }
-  .btn-box a.btn {
-    font-size: 1.2rem;
-  }
-  
-}
-@media (max-width:690px){
-  .home{
-    height: 1200px;
-  }
-  .home-content {
-    padding:30px;
-  }
-  .navbar a{
-    font-size: 20px;
-  }
-  .header .navbar{
-    width: 300px;
-  }
-  .home-pic img{
-    width: 400px;
-    height: 400px;
-
-  }
-  .home-content h3 {
-    font-size: 32px;
-    font-weight: 700;
-
-  }
-  .home-content h1 {
-    font-size: 56px;
-    font-weight: 700;
-  }
-  .home-content p {
-    font-size: 20px;
-    line-height: 40px;
-  }
-}
-
-@media (max-width:570px){
-  .header .logo a{
-    font-size: 20px;
-  }
-}
-@media (max-width:515px){
-  .home-pic img{
-    width: 300px;
-    height: 300px;
-  }  
-  .header .navbar{
-    width: 300px;
-  }
-  @media (max-width:515px){
-    .header .logo a{
-      font-size: 20px;
-    }
-  }
-  @media (max-width:350px){
-    .header .navbar a {
-        font-size: 15px;
-      }
-    .home{
-      height: 900px;
-      margin-left: 50px;
-    }
-    .home-pic img{
-      width: 200px;
-      height: 200px;
-  
-    }
-    .home-content h3 {
-      font-size: 22px;
-      font-weight: 700;
-  
-    }
-    .home-content h1 {
-      font-size: 46px;
-      font-weight: 700;
-    }
-    .home-content p {
-      font-size: 15px;
-      line-height: 40px;
-    }
-    .btn-box{
-      gap: 20px;
-      width: 180px;
-      height: 30px;
-    }
-    .btn-box a.btn {
-      font-size: 0.5rem;
-    }
-    .header .navbar a{
-      font-size: 15px;
-    }
-    .header{
-      gap: 10px;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .red{
     color: red;
 }
 
-
-.text{
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 20px;
-    
-}
 .container .img img{
     width: 260px;
     height: 260px;
@@ -627,82 +340,12 @@ input[type=text]:focus{
     transform: translateY(-.7rem)
 }
 
-
-
-@keyframes slideRight{
-    0%{
-        transform: translateX(-100px);
-        opacity: 0;
-
-    }
-    
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideBottom{
-    0%{
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-
-@keyframes slideLeft{
-    0%{
-        transform: translateX(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-
 .projects{    
     width: 100%;
     height: 100vh;
     padding: 20px 10%;
 }
 
-.text{
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    font-weight: 700;
-    font-size: 20px;
-    
-}
 
 .fillter-buttons{
     margin-bottom: 2rem;
@@ -806,62 +449,7 @@ input[type=text]:focus{
 .port-box:hover .port-image img{
     transform: scale(1.1);
 }
-@keyframes slideRight{
-    0%{
-        transform: translateX(-100px);
-        opacity: 0;
 
-    }
-    
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideBottom{
-    0%{
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideLeft{
-    0%{
-        transform: translateX(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
 @keyframes html{
     0%{
         width: 0%;
@@ -918,17 +506,6 @@ input[type=text]:focus{
     padding: 20px 10%;
 }
 
-.text{
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    font-weight: 700;
-    font-size: 20px;
-    
-}
-
 .section-services{
     display: flex;
     justify-content: center;
@@ -973,64 +550,6 @@ input[type=text]:focus{
 .service-box p{
     margin-top: 10px;
 }
-@keyframes slideRight{
-    0%{
-        transform: translateX(-100px);
-        opacity: 0;
-
-    }
-    
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideTop{
-    0%{
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideBottom{
-    0%{
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes slideLeft{
-    0%{
-        transform: translateX(100px);
-        opacity: 0;
-
-    }
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-  }
-
-
 .service{    
 
     width: 100%;
@@ -1038,18 +557,6 @@ input[type=text]:focus{
     padding: 20px 10%;
 }
 
-
-
-
-.text{
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 20px;
-    
-}
 .skill-main{
     width: 100%;
     display: grid;
@@ -1280,3 +787,136 @@ input[type=text]:focus{
     
 }
 
+@media (max-width:1050px){
+    .home-content{
+      padding-left: 50px;
+    }
+  }
+  @media (max-width:1400px){
+    .home{
+      flex-direction: column;
+      height: 1500px;
+    }
+    .home-content{
+      max-width: 1000px;
+    }
+    .home-pic img{
+      width: 700px;
+      height: 700px;
+  
+    }
+    .home-content h3 {
+      font-size: 42px;
+      font-weight: 700;
+  
+    }
+    .home-content h1 {
+      font-size: 66px;
+      font-weight: 700;
+    }
+    .home-content p {
+      font-size: 30px;
+      line-height: 40px;
+    }
+    .btn-box{
+      width: 320px;
+      height: 60px;
+    }
+    .btn-box a.btn {
+      font-size: 1.2rem;
+    }
+    
+  }
+  @media (max-width:690px){
+    .home{
+      height: 1200px;
+    }
+    .home-content {
+      padding:30px;
+    }
+    .navbar a{
+      font-size: 20px;
+    }
+    .header .navbar{
+      width: 300px;
+    }
+    .home-pic img{
+      width: 400px;
+      height: 400px;
+  
+    }
+    .home-content h3 {
+      font-size: 32px;
+      font-weight: 700;
+  
+    }
+    .home-content h1 {
+      font-size: 56px;
+      font-weight: 700;
+    }
+    .home-content p {
+      font-size: 20px;
+      line-height: 40px;
+    }
+  }
+  
+  @media (max-width:570px){
+    .header .logo a{
+      font-size: 20px;
+    }
+  }
+  @media (max-width:515px){
+    .home-pic img{
+      width: 300px;
+      height: 300px;
+    }  
+    .header .navbar{
+      width: 300px;
+    }
+    @media (max-width:515px){
+      .header .logo a{
+        font-size: 20px;
+      }
+    }
+    @media (max-width:350px){
+      .header .navbar a {
+          font-size: 15px;
+        }
+      .home{
+        height: 900px;
+        margin-left: 50px;
+      }
+      .home-pic img{
+        width: 200px;
+        height: 200px;
+    
+      }
+      .home-content h3 {
+        font-size: 22px;
+        font-weight: 700;
+    
+      }
+      .home-content h1 {
+        font-size: 46px;
+        font-weight: 700;
+      }
+      .home-content p {
+        font-size: 15px;
+        line-height: 40px;
+      }
+      .btn-box{
+        gap: 20px;
+        width: 180px;
+        height: 30px;
+      }
+      .btn-box a.btn {
+        font-size: 0.5rem;
+      }
+      .header .navbar a{
+        font-size: 15px;
+      }
+      .header{
+        gap: 10px;
+      }
+    }
+  }
