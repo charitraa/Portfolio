@@ -7,14 +7,22 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+
 body {
   background-color: black;
-  color: white;
+  color: rgb(255, 255, 255);
   height: 100%;
 }
 
-.header {
-  height: 200px;
+span{
+    color: red;
+}
+
+.header-main{
+  height: 150px;
   width: 100%;
   padding: 20px 10%;
   display: flex;
@@ -57,13 +65,39 @@ body {
   transform: scale(1.5);
   color: rgb(255, 0, 0);
 }
+.navigation{
+    position: fixed;
+    top: 35%;
+    right: 50px;
+    border: solid white 2px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 275px;
+    width: 50px;
+    border-radius: 20px;
+    opacity: 0;
+    animation:slideRight 1s ease .5s forwards;
+}
+.navigation .tooltip a{
+    color: white;
+}
+.navigation .tooltip a i{
+    transition: .3s all linear;
+}
+.navigation  .tooltip a:hover i{
+    transform: scale(1.5);
+    color:  rgb(255, 0, 0);
+}
 
-.home{
+.home-main{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* flex-wrap: wrap; */
-  height:600px;
+  flex-wrap: wrap;
+  height: 750px;
 }
 .home-content {
   display: flex;
@@ -100,32 +134,6 @@ body {
   margin-right: 50px;
   opacity: 0;
   animation: slideLeft 1s ease 0.5s forwards;
-}
-.navigation {
-  border: solid white 2px;
-  z-index: 500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 275px;
-  width: 50px;
-  border-radius: 20px;
-  opacity: 0;
-  animation: slideRight 1s ease 0.5s forwards;
-}
-.navigation .tooltip a {
-  color: white;
-}
-.navigation .tooltip a i {
-  transition: 0.3s all linear;
-}
-.navigation .tooltip a:hover i {
-  transform: scale(1.5);
-  color: rgb(255, 0, 0);
-}
-span {
-  color: rgb(255, 0, 0);
 }
 
 .btn-box {
@@ -194,6 +202,189 @@ a.btn:hover::before {
   visibility: visible;
 }
 
+.projects{    
+    width: 100%;
+    height: 100vh;
+    padding: 20px 10%;
+}
+.red{
+    color: red;
+}
+.logo a {
+    position: relative;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;font-weight: 600;
+    color: rgb(255, 255, 255)
+}
+.logo{
+    cursor: default;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+
+}
+.navbar a{
+    display: inline-block;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 500;
+    margin-left: 35px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideTop .5s ease forwards;
+
+}
+.navbar a i{
+    transition: .3s all linear;
+}
+.navbar a:hover i{
+    transform: scale(1.5);
+    color:  rgb(255, 0, 0);
+}
+
+
+.tooltip{
+    position: relative;
+    display: inline-block;
+}
+.tooltiptext{
+    visibility: hidden;
+    margin-left: 10px;
+    width: 70px;
+    background-color: white;
+    color: black;
+    text-align:center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position:absolute ;
+    right: 40px;
+    z-index: 1;
+}
+.tooltip:hover .tooltiptext{
+    visibility: visible;
+}
+
+.text{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+.data{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+.subject{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.name input, .email input{
+    width: 300px;
+    height: 45px;
+    padding: 10px;
+}
+.subject input{
+    width: 610px;
+    height: 45px;
+    padding: 10px;
+}
+.message{
+    grid-column-start : 1;
+    grid-column-end: 4;
+}
+.message input{
+    position: relative;
+    width:610px;
+    height:200px;
+    padding: 10px;
+}
+.message input::placeholder{
+    position: absolute;
+    top: 10px
+}
+input[type=text]{
+    background: transparent;
+    border: white 1px solid;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    transition: .5s;
+    outline: none;
+}
+input[type=text]:focus{
+    border-color: rgb(255, 0, 0);
+}
+
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+
+    }
+    
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+
 @keyframes slideRight {
   0% {
     transform: translateX(-100px);
@@ -258,11 +449,6 @@ a.btn:hover::before {
   .home-content{
     max-width: 1000px;
   }
-  .navigation{
-    flex-direction: row;
-    width: 500px;
-    height: 50px;
-  }
   .home-pic img{
     width: 700px;
     height: 700px;
@@ -287,9 +473,6 @@ a.btn:hover::before {
   }
   .btn-box a.btn {
     font-size: 1.2rem;
-  }
-  .navigation .tooltip a {
-    font-size: 30px;
   }
   
 }
@@ -324,14 +507,6 @@ a.btn:hover::before {
     font-size: 20px;
     line-height: 40px;
   }
-
-  .navigation .tooltip a {
-    font-size: 20px;
-  }
-  .navigation{
-    width: 300px;
-    height: 50px;
-  }
 }
 
 @media (max-width:570px){
@@ -340,13 +515,6 @@ a.btn:hover::before {
   }
 }
 @media (max-width:515px){
-  .navigation .tooltip a {
-    font-size: 15px;
-  }
-  .navigation{
-    width: 250px;
-    height: 50px;
-  }
   .home-pic img{
     width: 300px;
     height: 300px;
@@ -380,7 +548,7 @@ a.btn:hover::before {
       font-weight: 700;
     }
     .home-content p {
-      font-size: 10px;
+      font-size: 15px;
       line-height: 40px;
     }
     .btn-box{
@@ -391,14 +559,6 @@ a.btn:hover::before {
     .btn-box a.btn {
       font-size: 0.5rem;
     }
-    .navigation .tooltip a {
-      font-size: 10px;
-    }
-    .navigation{
-  
-      width: 200px;
-      height: 25px;
-    }
     .header .navbar a{
       font-size: 15px;
     }
@@ -407,3 +567,881 @@ a.btn:hover::before {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.red{
+    color: red;
+}
+
+
+.text{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+.container .img img{
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+
+}
+
+
+.container{
+    width: 100%;
+    display: flex;
+    padding: 0px 20%;
+    gap: 20%;
+    
+}
+
+.about-content{
+    margin-top: 10px;
+    font-size: 20px;
+
+}
+
+.mar{
+    margin-left: 40px;
+}
+
+.name img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.qalification{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    padding: 20px 7%;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name{
+    display: flex;
+    align-items: center;
+}
+.school{
+    margin-left: 10px;
+    color: red;
+}.primary{
+    width: 410px;
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    gap: 20px;
+    font-size: 18px;
+    padding: 10px;
+    border: solid 3px rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: transform .5s;
+}
+.primary:hover{
+    transform: translateY(-.7rem)
+}
+
+
+
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+
+    }
+    
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+
+.projects{    
+    width: 100%;
+    height: 100vh;
+    padding: 20px 10%;
+}
+
+.red{
+    color: red;
+}
+.logo a {
+    position: relative;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;font-weight: 600;
+    color: rgb(255, 255, 255)
+}
+.logo{
+    cursor: default;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+
+}
+.navbar a{
+    display: inline-block;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 500;
+    margin-left: 35px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideTop .5s ease forwards;
+
+}
+.navbar a i{
+    transition: .3s all linear;
+}
+.navbar a:hover i{
+    transform: scale(1.5);
+    color:  rgb(255, 0, 0);
+}
+
+
+
+.text{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+
+.fillter-buttons{
+    margin-bottom: 2rem;
+    text-align: center;
+
+}
+.fillter-buttons .btn{
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .4px;
+    margin-left: 1.3rem;
+    color: white;
+
+}
+.fillter-buttons .btn:hover{
+    color: red;
+
+}
+.portfolio-gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(200px, 1fr));
+    gap:2rem}
+.port-box{
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    grid-template-rows: 1fr auto;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 2px solid red;
+    box-shadow: 0px 0px 10px red;
+}
+.port-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width:  100%;
+
+}
+
+.port-image img{
+    width: 100%;
+    opacity: .5s;
+    height: 100%;
+    transition: .5s;
+}
+.port-content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: linear-gradient(rgba(0,0,0,.2),red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    transition: 0.5s;
+    padding: 0 1rem;
+}
+.port-content h3{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.port-content p{
+    font-size: .8rem;
+    margin: 5px 0 15px 0;
+
+}
+.port-content a{
+    background: white;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(255, 0, 0);
+    outline: 2px solid white;
+    text-decoration: none;
+}
+.port-content a i{
+    font-size: 1.3rem;
+    color: red;
+}
+.port-box:hover .port-content{
+    opacity: 1;
+    
+}
+.port-box:hover .port-image img{
+    transform: scale(1.1);
+}
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+
+    }
+    
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes html{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 96%;
+    }
+}
+@keyframes css{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 85%;
+    }
+}
+@keyframes javascript{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 50%;
+    }
+}
+@keyframes python{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 65%;
+    }
+}
+@keyframes java{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 70%;
+    }
+}
+@keyframes mysql{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 80%;
+    }
+}
+
+
+.service{    
+    position: relative;
+    background: url('../Pic/desktop-wallpaper-portfolio.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    padding: 20px 10%;
+}
+
+.red{
+    color: red;
+}
+.logo a {
+    position: relative;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;font-weight: 600;
+    color: rgb(255, 255, 255)
+}
+.logo{
+    cursor: default;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+
+}
+.navbar a{
+    display: inline-block;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 500;
+    margin-left: 35px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideTop .5s ease forwards;
+
+}
+.navbar a i{
+    transition: .3s all linear;
+}
+.navbar a:hover i{
+    transform: scale(1.5);
+    color:  rgb(255, 0, 0);
+}
+
+
+
+.text{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+
+.section-services{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: 2rem;
+
+}
+.section-services .service-box{
+    flex: 1 1 18rem;
+    padding: 2rem 1rem 2rem;
+    text-align: center;
+    transition: transform .4s;
+    border-radius: 10px;
+    border: 2px solid white;
+    height: 400px;
+}
+.service-btn{
+    width: auto;
+    justify-content: center;
+}
+.service-box:hover{
+    transform: translateY(-.7rem)
+}
+.service-icon{
+    border: 2px solid rgb(255, 255, 255);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    border-radius: 50%;
+    flex-wrap: wrap;
+    position: relative;
+    color: rgb(255, 0, 0);
+    box-shadow:0 0 .5rem red;
+    outline: 3px solid rgb(255, 255, 255)
+}
+.service-box h3{
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+.service-box p{
+    margin-top: 10px;
+}
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+
+    }
+    
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+  }
+
+
+.service{    
+
+    width: 100%;
+    height: 100vh;
+    padding: 20px 10%;
+}
+
+.red{
+    color: red;
+}
+.logo a {
+    position: relative;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;font-weight: 600;
+    color: rgb(255, 255, 255)
+}
+.logo{
+    cursor: default;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+
+}
+.navbar a{
+    display: inline-block;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 500;
+    margin-left: 35px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideTop .5s ease forwards;
+
+}
+.navbar a i{
+    transition: .3s all linear;
+}
+.navbar a:hover i{
+    transform: scale(1.5);
+    color:  rgb(255, 0, 0);
+}
+
+.text{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+    
+}
+.skill-main{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-row-gap: 20px;
+    grid-column-gap: 50px;
+
+}
+.skill-bar{
+    margin-bottom: 2.3rem;
+
+}
+.skill-main h3{
+    margin-bottom: 2rem;
+    font-size: 30px;
+    text-align: center;
+}
+.skill-left .skill-bar .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.skill-left .skill-bar .bar{
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 10px;
+    position: relative;
+}
+.skill-bar .bar span{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background: red;
+    border-radius: 25px;
+    box-shadow:0 0 .5rem red;
+}
+.skill-bar .bar .html{
+    width: 96%;
+    animation: html 4s;
+}
+.skill-bar .bar .css{
+    width: 85%;
+    animation: css 3s;
+}
+.skill-bar .bar .javascript{
+    width: 50%;
+    animation: javascript 4s;
+}
+.skill-bar .bar .python{
+    width: 65%;
+    animation: python 4s;
+}
+.skill-bar .bar .java{
+    width: 70%;
+    animation: java 4s;
+}
+.skill-bar .bar .mysql{
+    width: 80%;
+    animation: mysql 3s;
+}
+.professional{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.box{
+    position: relative;
+    margin: 10px 0 ;
+    flex: 1 1 15rem;
+}
+.box .texts{
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+}
+.box .texts big{
+    font-weight: 400;
+    letter-spacing: 1px;
+    position: absolute;
+    top:45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.circle{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+}
+.box .texts small{
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.circle .points{
+    width: 2px;
+    height: 10px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    border-radius: 3px;
+    transform: rotate(calc(var(--i)*var(--rot)) ) translateY(-45px);
+
+}
+.marked{
+    animation: glow 0.04s linear forwards;
+    animation-delay: calc(var(--i)*0.05s);
+}
+
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+
+    }
+    
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes html{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 96%;
+    }
+}
+@keyframes css{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 85%;
+    }
+}
+@keyframes javascript{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 50%;
+    }
+}
+@keyframes python{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 65%;
+    }
+}
+@keyframes java{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 70%;
+    }
+}
+@keyframes mysql{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 80%;
+    }
+}
+@keyframes glow{
+    0%{
+        background: rgb(255, 0, 0);
+        box-shadow:0;
+    }
+    100%{
+        background: rgb(255, 0, 0);
+        box-shadow:0 0 .5rem red ;
+    }
+    
+}
+
