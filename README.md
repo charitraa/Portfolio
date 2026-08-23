@@ -8,7 +8,7 @@ They're meant to be taken. Every one keeps all of its content in one or two data
 turning a template into *your* portfolio is an edit, not a rewrite. MIT licensed, no attribution
 required.
 
-**▶ [Live demos — all six in one place](https://charitraa.github.io/portfolio-templates/)**
+**▶ [Live demos — all six in one place](https://charitraa.github.io/Portfolio/)**
 
 ---
 
@@ -16,12 +16,12 @@ required.
 
 | | Template | What it is | Stack |
 | --- | --- | --- | --- |
-| 01 | **[Developer BIOS Utility](apps/bios)** · [demo](https://charitraa.github.io/portfolio-templates/bios/) | Visitors boot the machine, watch it detect a developer, then browse the résumé as if editing BIOS settings. Keyboard-driven. | Vanilla JS — **no build step** |
-| 02 | **[CircuitOS](apps/circuitos)** · [demo](https://charitraa.github.io/portfolio-templates/circuitos/) | An interactive PCB that boots *you* instead of an OS. The CPU is the engineer; every other component is a section, wired with animated copper traces. | React 18, Tailwind v4, Framer Motion |
-| 03 | **[NET://](apps/net-topology)** · [demo](https://charitraa.github.io/portfolio-templates/net-topology/) | The visitor is a packet — ISP edge, DNS, firewall, load balancer, database. Every device on the map is a section. | React 19, xyflow, Tailwind v4 |
-| 04 | **[ReconOS](apps/reconos)** · [demo](https://charitraa.github.io/portfolio-templates/reconos/) | A security operations console: persistent tabs, a working command bar, a resizable log panel, views that present as HTTP responses. | React 19, Router, Recharts, Vitest |
-| 05 | **[Workspace OS](apps/workspace-os)** · [demo](https://charitraa.github.io/portfolio-templates/workspace-os/) | A room with a computer in it. Pull the bulb's cord, press power, watch it POST, land in a desktop where every section is an app — running on the monitor in CSS 3D. | React 19, three.js, R3F |
-| 06 | **[My Story, Vol. 01](apps/manga-book)** · [demo](https://charitraa.github.io/portfolio-templates/manga-book/) | A career told as a manga volume you page through. Every spread is inked at runtime onto a canvas — panels, screentones, speech bubbles and all. | React 19, Canvas 2D, three.js |
+| 01 | **[Developer BIOS Utility](apps/bios)** · [demo](https://charitraa.github.io/Portfolio/bios/) | Visitors boot the machine, watch it detect a developer, then browse the résumé as if editing BIOS settings. Keyboard-driven. | Vanilla JS — **no build step** |
+| 02 | **[CircuitOS](apps/circuitos)** · [demo](https://charitraa.github.io/Portfolio/circuitos/) | An interactive PCB that boots *you* instead of an OS. The CPU is the engineer; every other component is a section, wired with animated copper traces. | React 18, Tailwind v4, Framer Motion |
+| 03 | **[NET://](apps/net-topology)** · [demo](https://charitraa.github.io/Portfolio/net-topology/) | The visitor is a packet — ISP edge, DNS, firewall, load balancer, database. Every device on the map is a section. | React 19, xyflow, Tailwind v4 |
+| 04 | **[ReconOS](apps/reconos)** · [demo](https://charitraa.github.io/Portfolio/reconos/) | A security operations console: persistent tabs, a working command bar, a resizable log panel, views that present as HTTP responses. | React 19, Router, Recharts, Vitest |
+| 05 | **[Workspace OS](apps/workspace-os)** · [demo](https://charitraa.github.io/Portfolio/workspace-os/) | A room with a computer in it. Pull the bulb's cord, press power, watch it POST, land in a desktop where every section is an app — running on the monitor in CSS 3D. | React 19, three.js, R3F |
+| 06 | **[My Story, Vol. 01](apps/manga-book)** · [demo](https://charitraa.github.io/Portfolio/manga-book/) | A career told as a manga volume you page through. Every spread is inked at runtime onto a canvas — panels, screentones, speech bubbles and all. | React 19, Canvas 2D, three.js |
 
 Not sure which one? **[docs/comparison.md](docs/comparison.md)** puts them side by side — payload
 size, dependency count, accessibility, and what each one is actually good for.
@@ -43,8 +43,8 @@ size, dependency count, accessibility, and what each one is actually good for.
 Pick one, run it, edit its data file. That's the whole workflow.
 
 ```bash
-git clone https://github.com/charitraa/portfolio-templates.git
-cd portfolio-templates/apps/reconos      # or bios · circuitos · net-topology · workspace-os · manga-book
+git clone https://github.com/charitraa/Portfolio.git
+cd Portfolio/apps/reconos      # or bios · circuitos · net-topology · workspace-os · manga-book
 
 npm install
 npm run dev                    # http://localhost:5173
@@ -53,7 +53,7 @@ npm run dev                    # http://localhost:5173
 `apps/bios` is the exception — it has no dependencies and no build:
 
 ```bash
-cd portfolio-templates/apps/bios
+cd Portfolio/apps/bios
 python3 -m http.server 8000    # http://localhost:8000
 ```
 
@@ -124,13 +124,15 @@ delete the five you don't want and the sixth still works.
 
 ## Publishing the demos yourself
 
-If you fork this, the demo site builds itself:
-
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions**
-2. Push to `main`.
+If you fork this, the demo site builds itself. Push to `main` and the workflow does the rest — it
+turns Pages on through the API on its first run, so there is no settings page to visit.
 
 The workflow resolves the correct base path from your repo name, so it works whether you keep
-the name `portfolio-templates` or rename it — and whether it's a project site or a `<user>.github.io` one.
+the name `Portfolio` or rename it — and whether it's a project site or a `<user>.github.io` one.
+
+> If that first run fails on **"Get Pages site failed"**, your account or organisation blocks the
+> API from enabling Pages. Turn it on by hand once — **Settings → Pages → Build and deployment →
+> Source: GitHub Actions** — and re-run the job.
 
 ## Author
 

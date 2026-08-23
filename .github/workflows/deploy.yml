@@ -30,8 +30,12 @@ jobs:
 
       # Resolves the URL this site will be served from, so `base_path` is
       # "/<repo>" for a project site and "" for a <user>.github.io site.
+      # `enablement` turns Pages on via the API the first time this runs, so a
+      # fresh clone or fork deploys without anyone visiting the settings page.
       - id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Build every demo into _site/
         env:
