@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio Machines — six portfolio templates</title>
+<meta name="description" content="Six open-source developer portfolio templates, each one shaped like a machine: a BIOS, a motherboard, a network, a SOC console, a desktop OS, and a manga volume.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230b0d10'/%3E%3Ctext x='3' y='12' font-family='monospace' font-size='11' fill='%2358e08a'%3E%3E%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg-raised: #101318;
+    --line: #1e242d;
+    --ink: #e6eaf0;
+    --ink-dim: #8b95a5;
+    --ink-faint: #5a6373;
+    --accent: #58e08a;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.6;
+    background-image:
+      radial-gradient(120% 80% at 50% -10%, rgba(88,224,138,.07) 0%, transparent 60%),
+      linear-gradient(transparent 95%, rgba(255,255,255,.02) 95%);
+    background-size: auto, 100% 3px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── header ─────────────────────────────────────────── */
+  header { padding: 72px 0 8px; }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .kicker::before { content: "● "; }
+  h1 {
+    font-size: clamp(30px, 6vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin: 0 0 20px;
+    font-weight: 700;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede {
+    color: var(--ink-dim);
+    max-width: 62ch;
+    margin: 0 0 28px;
+    font-size: 16px;
+  }
+  .lede code {
+    color: var(--ink);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: .9em;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+  .btn {
+    display: inline-block;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: border-color .15s, color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .btn-primary { border-color: rgba(88,224,138,.4); color: var(--accent); }
+
+  hr.rule { border: 0; border-top: 1px solid var(--line); margin: 44px 0 36px; }
+
+  /* ── grid ───────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 18px;
+    padding-bottom: 8px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: linear-gradient(180deg, var(--bg-raised), #0c0f13);
+    padding: 20px;
+    overflow: hidden;
+    transition: border-color .18s, transform .18s;
+  }
+  .card:hover { border-color: rgba(88,224,138,.45); transform: translateY(-2px); }
+  .card::after {
+    content: "";
+    position: absolute; inset: 0 0 auto 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity .18s;
+  }
+  .card:hover::after { opacity: .7; }
+
+  .card .no { color: var(--ink-faint); font-size: 11px; letter-spacing: .14em; }
+  .card h2 { font-size: 18px; margin: 6px 0 2px; letter-spacing: -.01em; }
+  .card .tag { color: var(--accent); font-size: 12px; margin: 0 0 12px; }
+  .card p.desc { color: var(--ink-dim); font-size: 13.5px; margin: 0 0 16px; flex: 1; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .chip {
+    border: 1px solid var(--line);
+    color: var(--ink-faint);
+    border-radius: 20px;
+    padding: 2px 9px;
+    font-size: 11px;
+  }
+  .card .links { display: flex; gap: 8px; }
+  .card .links a {
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink-dim);
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .card .links a.go { color: var(--ink); border-color: rgba(88,224,138,.3); }
+  .card .links a:hover { color: var(--accent); border-color: var(--accent); background: rgba(88,224,138,.06); }
+
+  /* ── how-to ─────────────────────────────────────────── */
+  .how { margin: 48px 0 0; }
+  .how h3 { font-size: 15px; margin: 0 0 14px; color: var(--ink); }
+  pre {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+    color: var(--ink-dim);
+  }
+  pre .c { color: var(--ink-faint); }
+  pre .g { color: var(--accent); }
+  .note { color: var(--ink-faint); font-size: 12.5px; margin: 0; }
+  .note a { color: var(--ink-dim); }
+  .note code, .note strong {
+    color: var(--ink-dim);
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .note strong { color: var(--accent); border-color: rgba(88,224,138,.25); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 52px;
+    padding: 24px 0 56px;
+    color: var(--ink-faint);
+    font-size: 12.5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    justify-content: space-between;
+  }
+  footer a { color: var(--ink-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="kicker">6 templates · MIT · clone and make it yours</p>
+    <h1>Portfolios that boot,<br>route, and <em>run</em>.</h1>
+    <p class="lede">
+      Six developer portfolio templates, each one built as a machine instead of a landing page —
+      a firmware setup screen, a motherboard, a network topology, a security console, a desktop OS,
+      and a printed manga volume. Every one of them keeps <strong>all of its content in one or two
+      data files</strong>, so making it yours is an edit, not a rewrite.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="__REPO_URL__">Source on GitHub</a>
+      <a class="btn" href="__REPO_URL__#making-it-yours">How to use one</a>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="no">01 / FIRMWARE</div>
+      <h2>Developer BIOS Utility</h2>
+      <p class="tag">bios</p>
+      <p class="desc">Visitors don't land on a homepage — they boot the machine, watch it detect a developer, and browse the résumé as if editing BIOS settings. Keyboard-driven, no build step, no dependencies.</p>
+      <div class="chips"><span class="chip">Vanilla JS</span><span class="chip">No build</span><span class="chip">~130 KB</span></div>
+      <div class="links">
+        <a class="go" href="bios/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/bios">Source</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="no">02 / HARDWARE</div>
+      <h2>CircuitOS</h2>
+      <p class="tag">circuitos</p>
+      <p class="desc">An interactive PCB that boots <em>you</em> instead of an OS. The CPU is the engineer; every other component is a section, wired to it with animated copper traces. Plain DOM over an SVG trace layer — crisp at any zoom.</p>
+      <div class="chips"><span class="chip">React 18</span><span class="chip">Tailwind v4</span><span class="chip">Framer Motion</span></div>
+      <div class="links">
+        <a class="go" href="circuitos/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/circuitos">Source</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="no">03 / NETWORK</div>
+      <h2>NET://</h2>
+      <p class="tag">net-topology</p>
+      <p class="desc">The visitor is a packet. They arrive at the ISP edge, get resolved by DNS, pass the firewall, hit the load balancer and land at the database — and every device on the map is a section of the portfolio.</p>
+      <div class="chips"><span class="chip">React 19</span><span class="chip">xyflow</span><span class="chip">Tailwind v4</span></div>
+      <div class="links">
+        <a class="go" href="net-topology/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/net-topology">Source</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="no">04 / OPERATIONS</div>
+      <h2>ReconOS</h2>
+      <p class="tag">reconos</p>
+      <p class="desc">A portfolio that behaves like a security operations console: persistent tabs, a working command bar, a resizable log panel, and views that present themselves as HTTP responses. Smoke-tested, linted, typed.</p>
+      <div class="chips"><span class="chip">React 19</span><span class="chip">Router</span><span class="chip">Recharts</span><span class="chip">Vitest</span></div>
+      <div class="links">
+        <a class="go" href="reconos/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/reconos">Source</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="no">05 / DESKTOP</div>
+      <h2>Workspace OS</h2>
+      <p class="tag">workspace-os</p>
+      <p class="desc">A portfolio shaped like a room with a computer in it. Pull the bulb's cord, press power, watch it POST, and land in a desktop where every section is an application — running on the monitor, in CSS 3D, without leaving the room.</p>
+      <div class="chips"><span class="chip">React 19</span><span class="chip">three.js</span><span class="chip">R3F</span><span class="chip">WebGL</span></div>
+      <div class="links">
+        <a class="go" href="workspace-os/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/workspace-os">Source</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="no">06 / PRINT</div>
+      <h2>My Story, Vol. 01</h2>
+      <p class="tag">manga-book</p>
+      <p class="desc">A career told as a manga volume you page through. Every spread is inked at runtime onto a canvas from a content file — panels, screentones, speech bubbles and all. Pages are bound into sheets, front and back.</p>
+      <div class="chips"><span class="chip">React 19</span><span class="chip">Canvas 2D</span><span class="chip">three.js</span></div>
+      <div class="links">
+        <a class="go" href="manga-book/">Live demo →</a>
+        <a href="__REPO_URL__/tree/main/apps/manga-book">Source</a>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="how">
+    <h3>Take one and make it yours</h3>
+<pre><span class="c"># grab the whole set</span>
+<span class="g">git clone</span> __CLONE_URL__
+<span class="g">cd</span> __REPO_NAME__/apps/reconos   <span class="c"># or bios, circuitos, net-topology, workspace-os, manga-book</span>
+
+<span class="g">npm install</span>
+<span class="g">npm run dev</span>                    <span class="c"># http://localhost:5173</span>
+
+<span class="c"># then edit the data files named in that app's README — nothing else.</span>
+<span class="g">npm run build</span>                  <span class="c"># static bundle in dist/, deploy anywhere</span></pre>
+    <p class="note"><strong>bios</strong> has no build step at all — <code>python3 -m http.server</code> in its folder and you're running.
+    Each app's own README lists exactly which files hold the content. Everything here is MIT licensed —
+    use it, change it, ship it, no attribution required.</p>
+  </section>
+
+  <footer>
+    <span>MIT licensed · built with Vite, React and Tailwind</span>
+    <span><a href="__REPO_URL__">github → __REPO_SLUG__</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

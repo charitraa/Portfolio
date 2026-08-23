@@ -1,0 +1,193 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-void: #0a0f1f;
+  --color-pcb: #111827;
+  --color-panel: #1f2937;
+  --color-copper: #f59e0b;
+  --color-electric: #3b82f6;
+  --color-signal: #22c55e;
+  --color-power: #ef4444;
+  --color-memory: #8b5cf6;
+  --color-ink: #f9fafb;
+  --color-muted: #cbd5e1;
+  --color-edge: #334155;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-numeric: 'Orbitron', 'JetBrains Mono', monospace;
+}
+
+:root {
+  color-scheme: dark;
+  /* Hue rotation driven by the Konami easter egg. */
+  --rgb-shift: 0deg;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* ── PCB substrate texture ───────────────────────────────────────────── */
+.pcb-grid {
+  background-image:
+    linear-gradient(to right, rgba(51, 65, 85, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(51, 65, 85, 0.28) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
+  background-size:
+    28px 28px,
+    28px 28px,
+    100% 100%;
+}
+
+.solder-mask {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.1), transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(139, 92, 246, 0.09), transparent 55%),
+    linear-gradient(160deg, #131c30 0%, #101827 45%, #0d1420 100%);
+}
+
+/* ── Animations ──────────────────────────────────────────────────────── */
+@keyframes led-blink {
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+  }
+  94%,
+  98% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes spin-fan {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes cap-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(245, 158, 11, 0.85));
+  }
+}
+
+.led {
+  animation: led-blink 4.2s infinite steps(1, end);
+}
+.breathe {
+  animation: breathe 3.4s ease-in-out infinite;
+}
+.fan-spin {
+  animation: spin-fan 2.6s linear infinite;
+  transform-origin: center;
+}
+.fan-spin-fast {
+  animation: spin-fan 0.55s linear infinite;
+  transform-origin: center;
+}
+.cap-glow {
+  animation: cap-glow 2.8s ease-in-out infinite;
+}
+
+.trace-flow {
+  stroke-dasharray: 8 26;
+  animation: dash-flow 3.2s linear infinite;
+}
+.trace-flow-fast {
+  animation-duration: 0.75s;
+}
+
+/* ── Utility ─────────────────────────────────────────────────────────── */
+.text-glow-copper {
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.55);
+}
+.text-glow-electric {
+  text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+.node-surface {
+  background: linear-gradient(150deg, #243043 0%, #1a2334 55%, #141c2b 100%);
+  border: 1px solid var(--color-edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 24px -12px rgba(0, 0, 0, 0.9);
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 999px;
+}
+
+/* Konami mode: cycle the whole board through the spectrum. */
+@keyframes rgb-cycle {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+.rgb-mode .board-canvas {
+  animation: rgb-cycle 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led,
+  .breathe,
+  .fan-spin,
+  .fan-spin-fast,
+  .cap-glow,
+  .trace-flow,
+  .rgb-mode .board-canvas {
+    animation: none !important;
+  }
+}

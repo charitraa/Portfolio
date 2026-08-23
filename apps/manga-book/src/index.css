@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-title: "Bangers", cursive;
+  --font-hand: "Caveat", cursive;
+  --font-dialogue: "Zen Maru Gothic", sans-serif;
+  --color-ink: #14100c;
+  --color-paper: #efe7d6;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0b0907;
+  color: #efe7d6;
+  font-family: var(--font-dialogue);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+canvas {
+  touch-action: none;
+  display: block;
+}
+
+/* page-corner cursor */
+.cursor-turn {
+  cursor: pointer;
+}

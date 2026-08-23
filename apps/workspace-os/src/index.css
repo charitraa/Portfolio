@@ -1,0 +1,311 @@
+@import 'tailwindcss';
+
+@theme {
+  /* SF Pro Display is what the workstation this was modelled on actually runs,
+     and it is used when a visitor happens to have it installed. It cannot be
+     served — it is Apple-licensed — so Inter carries everyone else; it is the
+     closest open face and is already the shell's design font. */
+  --font-sans:
+    'SF Pro Display', 'SF Pro Text', 'Inter', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
+  --font-mono:
+    'SF Mono', 'JetBrains Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+}
+
+:root {
+  /*
+   * Read off the workstation this is modelled on: KDE Plasma running the
+   * Apple-Darkness look-and-feel with the MkosBigSurDark colour scheme.
+   * The numbers below are that scheme's, converted from its rgb() triples:
+   *
+   *   Window   BackgroundNormal  24,24,24    #181818
+   *   View     BackgroundNormal  25,25,25    #191919
+   *   Button   BackgroundNormal  50,50,50    #323232
+   *   View     ForegroundNormal  222,222,222 #dedede
+   *   View     ForegroundInactive 120,120,120 #787878
+   *   Selection BackgroundNormal 57,172,225  #39ace1
+   *
+   * Overwritten at runtime from the Settings app.
+   */
+  --accent: #39ace1;
+  --accent-soft: color-mix(in oklab, var(--accent) 22%, transparent);
+  --chrome: #1e1e1e;
+  --chrome-border: rgba(255, 255, 255, 0.09);
+  --text: #dedede;
+  --text-dim: #8b8b8b;
+  color-scheme: dark;
+}
+
+:root[data-light='true'] {
+  --chrome: #f4f6fa;
+  --chrome-border: rgba(0, 0, 0, 0.12);
+  --text: #16202f;
+  --text-dim: #5a6678;
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #06080c;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+/* The desktop is a pointer-driven surface; stray text selection during window
+   drags looks broken. Apps opt back in with `.selectable`. */
+#root {
+  user-select: none;
+}
+.selectable {
+  user-select: text;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Keyboard focus was invisible everywhere: components style their own
+   backgrounds and nothing restored an indicator. One ring, drawn outside the
+   element so it survives `overflow: hidden` parents, on focus-visible only so
+   pointer users never see it. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* --- Scrollbars -------------------------------------------------------- */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--text) 25%, transparent) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--text) 20%, transparent);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--text) 38%, transparent);
+  background-clip: content-box;
+}
+
+/* --- Shell surfaces ---------------------------------------------------- */
+
+@utility glass {
+  background: color-mix(in oklab, var(--chrome) 78%, transparent);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+}
+
+@utility glass-solid {
+  background: var(--chrome);
+}
+
+@utility ring-chrome {
+  box-shadow: inset 0 0 0 1px var(--chrome-border);
+}
+
+/* --- Boot / CRT effects ------------------------------------------------ */
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.22) 3px,
+    rgba(0, 0, 0, 0.22) 4px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  52% {
+    opacity: 0.98;
+  }
+}
+.crt {
+  animation: crt-flicker 4.5s infinite;
+}
+
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.caret {
+  animation: caret 1.05s steps(1) infinite;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+.nudge {
+  animation: nudge 0.34s ease-in-out;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 1.6s linear infinite;
+}
+
+/* --- The way in: splash and corridor ----------------------------------- */
+
+/* Terminals scrolling down the far wall. The block is written out twice, so
+   travelling exactly half of it loops without a seam. */
+@keyframes entry-rain {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* A light moving across the room, somewhere off camera. */
+@keyframes entry-sweep {
+  0% {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+  35%,
+  65% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(340%);
+    opacity: 0;
+  }
+}
+
+/* Traffic along a link on the network diagram. */
+@keyframes entry-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes entry-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Status lines and headings arriving.
+   Deliberately not from zero: the room's chunk can block the main thread for
+   a moment as it compiles, and an animation frozen on its first frame must
+   still leave the text readable. */
+@keyframes entry-in {
+  from {
+    opacity: 0.25;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt,
+  .nudge,
+  .spin-slow,
+  .caret {
+    animation: none;
+  }
+
+  /* Anything driven by a CSS animation, including the entry sequence. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --- Narrow displays ---------------------------------------------------- */
+
+/* On a phone `Sidebar` renders as a horizontal strip instead of a rail. Every
+   app wraps it in the same `flex min-h-0 flex-1` row, so rather than editing
+   each one, the container that directly holds a strip stacks instead. */
+:where(div):has(> nav[data-sidebar-strip]) {
+  flex-direction: column;
+}
+
+/* The strip is dragged with a thumb; a scrollbar across it wastes the height. */
+nav[data-sidebar-strip]::-webkit-scrollbar {
+  display: none;
+}
+
+/* The taskbar holds more pinned apps than fit across a phone, so the strip
+   scrolls sideways rather than overflowing the display — without drawing a
+   scrollbar across the icons. */
+.task-strip {
+  scrollbar-width: none;
+}
+.task-strip::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,205 @@
+@import 'tailwindcss';
+
+/* ── Palette ─────────────────────────────────────────────────────────────
+   Runtime-swappable raw values. Tailwind tokens below point at these, so a
+   `data-theme` flip on <html> re-colors every utility class at once.        */
+:root,
+:root[data-theme='dark'] {
+  --rc-bg: #1e1e1e;
+  --rc-bg-2: #252526;
+  --rc-panel: #2d2d30;
+  --rc-sidebar: #333333;
+  --rc-border: #3f3f46;
+  --rc-border-soft: #333338;
+  --rc-text: #f3f3f3;
+  --rc-text-2: #c8c8c8;
+  --rc-muted: #8b8b8b;
+  --rc-hover: rgba(255, 255, 255, 0.05);
+  --rc-active: rgba(255, 255, 255, 0.08);
+  --rc-shadow: rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --rc-bg: #f5f5f6;
+  --rc-bg-2: #ececed;
+  --rc-panel: #ffffff;
+  --rc-sidebar: #e4e4e6;
+  --rc-border: #d0d0d4;
+  --rc-border-soft: #e0e0e3;
+  --rc-text: #1b1b1d;
+  --rc-text-2: #3d3d42;
+  --rc-muted: #6b6b72;
+  --rc-hover: rgba(0, 0, 0, 0.045);
+  --rc-active: rgba(0, 0, 0, 0.075);
+  --rc-shadow: rgba(0, 0, 0, 0.14);
+  color-scheme: light;
+}
+
+@theme {
+  --color-bg: var(--rc-bg);
+  --color-bg2: var(--rc-bg-2);
+  --color-panel: var(--rc-panel);
+  --color-sidebar: var(--rc-sidebar);
+  --color-line: var(--rc-border);
+  --color-line-soft: var(--rc-border-soft);
+  --color-fg: var(--rc-text);
+  --color-fg2: var(--rc-text-2);
+  --color-muted: var(--rc-muted);
+  --color-hover: var(--rc-hover);
+  --color-active: var(--rc-active);
+
+  --color-blue: #007acc;
+  --color-orange: #f57c00;
+  --color-green: #4caf50;
+  --color-red: #f44336;
+  --color-yellow: #ffca28;
+  --color-purple: #7e57c2;
+
+  --font-sans: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-num: 'Roboto Mono', ui-monospace, monospace;
+
+  --radius-card: 10px;
+
+  --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--rc-border);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--rc-bg);
+    color: var(--rc-text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-blue) 45%, transparent);
+    color: #fff;
+  }
+
+  /* Slim, app-like scrollbars in both themes. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--rc-muted) 35%, transparent);
+    border: 2px solid transparent;
+    background-clip: content-box;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--rc-muted) 60%, transparent);
+    background-clip: content-box;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-blue);
+    outline-offset: 1px;
+  }
+
+  /* Compact density: tighter type and table rows across every view. */
+  :root[data-density='compact'] body {
+    font-size: 12px;
+  }
+  :root[data-density='compact'] :is(td, th) {
+    padding-block: 3px;
+  }
+  :root[data-density='compact'] section > header {
+    padding-block: 4px;
+  }
+}
+
+@layer utilities {
+  .num {
+    font-family: var(--font-num);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scroll-y {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+  }
+
+  /* Blinking block cursor for terminal-style text. */
+  .caret::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: currentColor;
+    animation: rc-blink 1.05s steps(2, start) infinite;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--rc-panel) 25%,
+      color-mix(in srgb, var(--rc-panel) 60%, var(--rc-muted)) 37%,
+      var(--rc-panel) 63%
+    );
+    background-size: 400% 100%;
+    animation: rc-shimmer 1.4s ease infinite;
+  }
+}
+
+@keyframes rc-blink {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rc-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes rc-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-green) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Honour the OS setting — every motion in the app is decorative. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,93 @@
+name: Deploy demos
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Needed by actions/deploy-pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; the newest push wins.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/*/package-lock.json
+
+      # Resolves the URL this site will be served from, so `base_path` is
+      # "/<repo>" for a project site and "" for a <user>.github.io site.
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build every demo into _site/
+        env:
+          BASE: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          # Tell Pages to serve the files as-is (no Jekyll, so _-prefixed paths work).
+          touch _site/.nojekyll
+
+          for dir in apps/*/; do
+            app=$(basename "$dir")
+            echo "::group::$app"
+
+            if [ -f "$dir/package.json" ]; then
+              ( cd "$dir" && npm ci && BASE_PATH="$BASE/$app/" npm run build )
+              cp -r "$dir/dist" "_site/$app"
+            else
+              # Static app (no toolchain) — ship the folder as it stands.
+              mkdir -p "_site/$app"
+              cp -r "$dir." "_site/$app/"
+            fi
+
+            # Client-side routers 404 on deep links unless the directory has
+            # its own fallback page. Harmless for the apps that don't route.
+            if [ -f "_site/$app/index.html" ]; then
+              cp "_site/$app/index.html" "_site/$app/404.html"
+            fi
+
+            echo "::endgroup::"
+          done
+
+      - name: Build the gallery landing page
+        env:
+          BASE: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+          sed \
+            -e "s|__REPO_URL__|${{ github.server_url }}/${{ github.repository }}|g" \
+            -e "s|__CLONE_URL__|${{ github.server_url }}/${{ github.repository }}.git|g" \
+            -e "s|__REPO_SLUG__|${{ github.repository }}|g" \
+            -e "s|__REPO_NAME__|${{ github.event.repository.name }}|g" \
+            site/index.html > _site/index.html
+          # Site-wide fallback, so an unknown path lands on the gallery.
+          cp _site/index.html _site/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
