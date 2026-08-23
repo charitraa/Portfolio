@@ -134,7 +134,7 @@ the name `portfolio-templates` or rename it — and whether it's a project site 
 
 ## Author
 
-**Charitra Shrestha** — Full-Stack Software Developer, Kathmandu, Nepal
+**Charitra Shrestha** — Full-Stack Software Developer, Kathmandu, Nepal<br>
 BSc (Hons) Computer Science & Software Engineering, University of Bedfordshire
 
 [Website](https://www.charitrashrestha.com.np/) ·
