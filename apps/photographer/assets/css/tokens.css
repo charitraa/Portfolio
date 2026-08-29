@@ -1,0 +1,70 @@
+/* ============================================================
+   TOKENS
+   Palette: photographic near-black, warm gallery paper, a single
+   cyanotype accent borrowed from the blueprint/cyanotype process.
+   Semantic tokens flip on .panel--paper so every component
+   inherits the right values without a second set of classes.
+   ============================================================ */
+:root{
+  /* raw palette */
+  --ink:        #0B0C0D;
+  --charcoal:   #141618;
+  --graphite:   #1B1E21;
+  --smoke:      #8B8E93;
+  --mist:       #C6C7C9;
+  --paper:      #EDEBE6;
+  --paper-2:    #E3E0D9;
+  --paper-ink:  #15171A;
+  --cyanotype:  #2E6076;
+  --cyanotype-tint: #9CC0D0;
+
+  /* semantic (dark is the default surface) */
+  --bg:      var(--ink);
+  --surface: var(--charcoal);
+  --fg:      #F3F1ED;
+  --fg-dim:  var(--smoke);
+  --fg-mid:  var(--mist);
+  --rule:    #2A2D31;
+  --rule-soft: rgba(243,241,237,.10);
+  --accent:  var(--cyanotype-tint);
+  --btn-fg:  #0B0C0D;
+  --btn-bg:  #F3F1ED;
+
+  /* type */
+  --ff-display: "Bodoni Moda", "Times New Roman", Times, serif;
+  --ff-body: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --ff-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --t-hero:  clamp(3rem, 9.2vw, 8.2rem);
+  --t-xxl:   clamp(2.4rem, 5.6vw, 5rem);
+  --t-xl:    clamp(2rem, 4.4vw, 3.9rem);
+  --t-l:     clamp(1.5rem, 2.6vw, 2.3rem);
+  --t-m:     clamp(1.12rem, 1.6vw, 1.4rem);
+  --t-body:  clamp(0.95rem, 0.35vw + 0.88rem, 1.06rem);
+  --t-sm:    0.875rem;
+  --t-mono:  0.6875rem;
+
+  /* space + motion */
+  --pad-x:   clamp(1.25rem, 5vw, 5.5rem);
+  --pad-y:   clamp(5rem, 11vw, 11.5rem);
+  --maxw:    1560px;
+  --gap:     clamp(1rem, 2vw, 2rem);
+  --ease:    cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --header-h: 76px;
+}
+
+@media (max-width: 720px){ :root{ --header-h: 64px; } }
+
+.panel--paper{
+  --bg:      var(--paper);
+  --surface: var(--paper-2);
+  --fg:      var(--paper-ink);
+  --fg-dim:  #5C5F63;
+  --fg-mid:  #3C4044;
+  --rule:    #CFCBC2;
+  --rule-soft: rgba(21,23,26,.12);
+  --accent:  var(--cyanotype);
+  --btn-fg:  #EDEBE6;
+  --btn-bg:  #15171A;
+}
